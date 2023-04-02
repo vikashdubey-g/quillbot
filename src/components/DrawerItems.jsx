@@ -55,7 +55,7 @@ export const DrawerItems = () => {
                     p: 0,
                     pl: 6,
                     borderRight:
-                      label === selectedLabel ? `2px solid ${colors.blue}` : "",
+                      label === selectedLabel ? `3px solid ${colors.blue}` : "",
                   }}
                   onClick={() => handleSelectedLabel(label)}
                 >

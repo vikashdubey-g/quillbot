@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, Card, Typography } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
@@ -12,18 +12,21 @@ const MovieCard = ({ itemInd, movieData }) => {
 
   const { Title, Poster } = movieData;
 
-  const cardSelected = (arr, i) => {
-    const res = arr?.map((item, ind) => {
-      return {
-        cards: ind === i ? true : false,
-      };
-    });
-    return res;
-  };
+  const cardSelected = useCallback(
+    (arr, i) => {
+      const res = arr?.map((item, ind) => {
+        return {
+          cards: ind === i ? true : false,
+        };
+      });
+      return res;
+    },
+    [isSelectedCard]
+  );
 
   const handleCard = (i) => {
-    setMovieDetails(movieData);
     const res = cardSelected(isSelectedCard, i);
+    setMovieDetails(movieData);
     const cloneCardRes = [...res];
     setIsSelectedCard(cloneCardRes);
   };
